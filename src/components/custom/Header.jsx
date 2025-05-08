@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import { Button } from '../ui/button';
+import { Link } from 'react-router-dom';
 import {
   Popover,
   PopoverContent,
@@ -59,24 +60,24 @@ function Header() {
 
   return (
     <div className='fixed w-full p-2 flex justify-between items-center px-6 bg-white/80 backdrop-blur-md z-50 border-b'>
-      <a href="/" className='flex items-center gap-2 hover:scale-105 transition-transform'>
+      <Link to="/" className='flex items-center gap-2 hover:scale-105 transition-transform'>
         <img 
           src='/Planetic.png' 
           alt="Logo" 
           className="h-12 w-auto" 
         />
-      </a>
+      </Link>
 
       {user ? (
         <div className="flex items-center gap-4">
-          <a href="/trip" className="text-sm font-semibold text-[#f56551] hover:text-[#e55341] transition-colors px-3 py-1.5 rounded-lg bg-orange-50">
+          <Link to="/trip" className="text-sm font-semibold text-[#f56551] hover:text-[#e55341] transition-colors px-3 py-1.5 rounded-lg bg-orange-50">
             Create Trip
-          </a>
-          <a href="/my-trips">
+          </Link>
+          <Link to="/my-trips">
             <Button className="bg-[#f56551] hover:bg-[#e55341] text-white shadow-md py-1.5">
               My Trips
             </Button>
-          </a>
+          </Link>
           <Popover>
             <PopoverTrigger>
               <img 
