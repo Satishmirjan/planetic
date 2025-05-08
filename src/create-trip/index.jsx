@@ -134,9 +134,9 @@ function CreateTrip() {
 
 
   return (
-    <div className="py-10 md:py-16" style={{ background: 'radial-gradient(ellipse at center, #FED7D5 0%, #FB923C 100%)' }}>
+    <div className="min-h-screen" style={{ background: 'radial-gradient(ellipse at center, #FED7D5 0%, #FB923C 100%)' }}>
       <div className="bg-white rounded-3xl shadow-2xl p-6 md:p-12 max-w-4xl mx-4 md:mx-auto">
-        <div className="text-center mb-12">
+        <div className="text-center mb-6">
           <h2 className="font-black text-4xl md:text-5xl bg-gradient-to-r from-[#f56551] to-[#ff922b] bg-clip-text text-transparent mb-4">
             Plan Your Perfect Trip
           </h2>

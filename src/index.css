@@ -29,17 +29,10 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
-body {
-  display: flex;
-  justify-content: center;  /* Horizontal centering */
-  align-items: center;      /* Vertical centering */
-  height: 100vh;            /* Full viewport height */
-  margin: 0;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 
@@ -141,6 +134,9 @@ button:focus-visible {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground w-full;
+  }
+  .container {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 }

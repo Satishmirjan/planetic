@@ -1,5 +1,3 @@
-
-
 import { getDocs, query, collection, where } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -7,10 +5,6 @@ import { db } from '../service/firebaseConfig';
 import UserTripsCardItem from './components/UserTripCardItem';
 
 function MyTrips() {
-
-
-
-  
   const navigate = useNavigate();
   const [trips, setTrips] = useState([]); // ✅ State to store trips
 
@@ -46,56 +40,21 @@ function MyTrips() {
   };
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">My Trip History</h1>
-      {trips.length === 0 ? (
-        <p>No trips found.</p>
-      ) : (
-        <div className="space-y-6">
-          {trips.map((trip) => (
-            // <div key={trip.id} className="border p-4 rounded-lg shadow-md">
-            //   <h2 className="text-xl font-semibold">{trip.TripData.tripName}</h2>
-          
-            //   <p><strong>Budget:</strong> {trip.TripData.budget}</p>
-            //   <p><strong>Travelers:</strong> {trip.TripData.travelers}</p>
-
-            //   {/* Hotels List */}
-            //   <h3 className="text-lg font-semibold mt-2">Hotels</h3>
-            //   <ul className="list-disc pl-5">
-            //     {trip.TripData.hotels.map((hotel, index) => (
-            //       <li key={index}>
-            //         <img src="./animal.jpg" alt="" />
-            //         <strong>{hotel.hotelName}</strong> - {hotel.price} - {hotel.rating}⭐
-            //       </li>
-            //     ))}
-            //   </ul>
-
-            //   {/* Itinerary (FIXED) */}
-            //   <h3 className="text-lg font-semibold mt-2">Itinerary</h3>
-            //   {Object.keys(trip.TripData.itinerary).map((day, index) => (
-            //     <div key={index}>
-            //<h4 className="font-medium">{day.toUpperCase()}</h4>
-            //       <ul className="list-disc pl-5">
-                          
-            //         {trip.TripData.itinerary[day].map((activity, i) => (
-            //           <li key={i}>
-            //              <img src="./animal.jpg" alt="" />
-            //             <strong>{activity.placeName}</strong> - {activity.bestTimeToVisit}
-            //             <br />
-            //             <small>Rating: {activity.rating}⭐</small>
-            //           </li>
-            //         ))}
-            //       </ul>
-            //     </div>
-            //   ))}
-            // </div>
-            
+    <div className="min-h-screen pt-20" style={{ background: 'radial-gradient(ellipse at center, #FED7D5 0%, #FB923C 100%)' }}>
+      <div className="max-w-6xl mx-auto px-4 md:px-8">
+        <h1 className="text-3xl font-bold mb-6 text-white">My Trip History</h1>
+        {trips.length === 0 ? (
+          <div className="bg-white rounded-2xl p-8 text-center">
+            <p className="text-gray-600">No trips found.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {trips.map((trip) => (
               <UserTripsCardItem key={trip.id} trip={trip} />
-      
-
-          ))}
-        </div>
-      )}
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

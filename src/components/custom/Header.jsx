@@ -39,21 +39,21 @@ function Header() {
   });
 
   return (
-    <div className='p-4 flex justify-between items-center px-8 bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b'>
+    <div className='fixed w-full p-2 flex justify-between items-center px-6 bg-white/80 backdrop-blur-md z-50 border-b'>
     <a href="/" className='flex items-center gap-2 hover:scale-105 transition-transform'>
   <img 
     src='/Planetic.png' 
     alt="Logo" 
-     className="h-32 w-auto"  />
+     className="h-12 w-auto"  />
 </a>
 
       {user ? (
-        <div className="flex items-center gap-6">
-          <a href="/trip" className="text-sm font-semibold text-[#f56551] hover:text-[#e55341] transition-colors px-4 py-2 rounded-lg bg-orange-50">
+        <div className="flex items-center gap-4">
+          <a href="/trip" className="text-sm font-semibold text-[#f56551] hover:text-[#e55341] transition-colors px-3 py-1.5 rounded-lg bg-orange-50">
             Create Trip
           </a>
           <a href="/my-trips">
-            <Button className="bg-[#f56551] hover:bg-[#e55341] text-white shadow-md">
+            <Button className="bg-[#f56551] hover:bg-[#e55341] text-white shadow-md py-1.5">
               My Trips
             </Button>
           </a>
@@ -62,7 +62,7 @@ function Header() {
               <img 
                 src={user?.picture} 
                 alt="User" 
-                className="w-12 h-12 rounded-full border-2 border-white shadow-lg hover:shadow-xl transition-shadow"
+                className="w-8 h-8 rounded-full border-2 border-white shadow-lg hover:shadow-xl transition-shadow"
               />
             </PopoverTrigger>
             <PopoverContent className='w-48 p-2 text-center'>

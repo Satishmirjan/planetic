@@ -34,11 +34,11 @@ function ViewTrip() {
 
   return (
     <div className="min-h-screen" style={{ background: 'radial-gradient(ellipse at center, #FED7D5 0%, #FB923C 100%)' }}>
-      <div className="max-w-6xl mx-auto px-4 md:px-8 py-20">
+      <div className="max-w-6xl mx-auto px-4 md:px-8">
         {trip ? (
-          <div className="space-y-8">
+          <div className="space-y-6">
             {/* Trip Header */}
-            <div className="bg-white rounded-3xl shadow-xl p-8 mb-12 border-2 border-orange-100">
+            <div className="bg-white rounded-3xl shadow-xl p-8 mb-6 border-2 border-orange-100">
               <h1 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-[#f56551] to-[#ff922b] bg-clip-text text-transparent mb-4">
                 Your {trip?.userSelection?.noOfDays} Day Trip to {trip?.userSelection?.location?.label}
               </h1>
