@@ -43,15 +43,12 @@ function Header() {
       console.error("Login Failed:", error);
       setOpenDialog(false);
     },
-    flow: 'implicit',
+    flow: 'auth-code',
     scope: 'email profile',
-    ux_mode: 'popup',
-    popup: {
-      width: 500,
-      height: 600,
-      left: window.screenX + (window.outerWidth - 500) / 2,
-      top: window.screenY + (window.outerHeight - 600) / 2
-    }
+    redirect_uri: "https://planetic-wft3.vercel.app/auth/google/callback",
+    ux_mode: 'redirect',
+    access_type: 'offline',
+    prompt: 'consent'
   });
 
   const handleLogout = useCallback(() => {
