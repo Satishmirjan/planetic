@@ -43,14 +43,14 @@ function Header() {
       console.error("Login Failed:", error);
       setOpenDialog(false);
     },
-    flow: 'auth-code',
-    ux_mode: 'redirect',
+    flow: 'implicit',
     scope: 'email profile',
-    access_type: 'offline',
-    prompt: 'consent',
-    onNonOAuthError: () => {
-      console.error('Non-OAuth error occurred');
-      setOpenDialog(false);
+    ux_mode: 'popup',
+    popup: {
+      width: 500,
+      height: 600,
+      left: window.screenX + (window.outerWidth - 500) / 2,
+      top: window.screenY + (window.outerHeight - 600) / 2
     }
   });
 
