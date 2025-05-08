@@ -36,16 +36,24 @@ function Header() {
   const login = useGoogleLogin({
     onSuccess: (coderesp) => GetUserProfile(coderesp),
     onError: (error) => console.error("Login Failed:", error),
+    flow: 'implicit',
+    popup: {
+      width: 500,
+      height: 600,
+      left: window.screenX + (window.outerWidth - 500) / 2,
+      top: window.screenY + (window.outerHeight - 600) / 2
+    }
   });
 
   return (
     <div className='fixed w-full p-2 flex justify-between items-center px-6 bg-white/80 backdrop-blur-md z-50 border-b'>
-    <a href="/" className='flex items-center gap-2 hover:scale-105 transition-transform'>
-  <img 
-    src='/Planetic.png' 
-    alt="Logo" 
-     className="h-12 w-auto"  />
-</a>
+      <a href="/" className='flex items-center gap-2 hover:scale-105 transition-transform'>
+        <img 
+          src='/Planetic.png' 
+          alt="Logo" 
+          className="h-12 w-auto" 
+        />
+      </a>
 
       {user ? (
         <div className="flex items-center gap-4">

@@ -35,7 +35,21 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <GoogleOAuthProvider clientId={CLIENT_ID}>
+    <GoogleOAuthProvider 
+      clientId={CLIENT_ID}
+      onScriptLoadSuccess={() => {
+        // Add meta tags dynamically
+        const meta = document.createElement('meta');
+        meta.httpEquiv = 'Cross-Origin-Opener-Policy';
+        meta.content = 'same-origin-allow-popups';
+        document.head.appendChild(meta);
+
+        const meta2 = document.createElement('meta');
+        meta2.httpEquiv = 'Cross-Origin-Embedder-Policy';
+        meta2.content = 'credentialless';
+        document.head.appendChild(meta2);
+      }}
+    >
       <div className="min-h-screen flex flex-col">
         <Header />
         <main className="flex-1 pt-24 pb-8">
