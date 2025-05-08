@@ -33,21 +33,22 @@ const router = createBrowserRouter([
   },
 ]);
 
+// Clean up any existing event listeners
+const cleanup = () => {
+  window.removeEventListener('unload', cleanup);
+  window.removeEventListener('beforeunload', cleanup);
+};
+
+window.addEventListener('unload', cleanup);
+window.addEventListener('beforeunload', cleanup);
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <GoogleOAuthProvider 
       clientId={CLIENT_ID}
       onScriptLoadSuccess={() => {
-        // Add meta tags dynamically
-        const meta = document.createElement('meta');
-        meta.httpEquiv = 'Cross-Origin-Opener-Policy';
-        meta.content = 'same-origin-allow-popups';
-        document.head.appendChild(meta);
-
-        const meta2 = document.createElement('meta');
-        meta2.httpEquiv = 'Cross-Origin-Embedder-Policy';
-        meta2.content = 'credentialless';
-        document.head.appendChild(meta2);
+        // Clean up any existing event listeners
+        cleanup();
       }}
     >
       <div className="min-h-screen flex flex-col">

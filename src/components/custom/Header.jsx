@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { Button } from '../ui/button';
 import {
   Popover,
@@ -20,30 +20,45 @@ function Header() {
   const user = JSON.parse(localStorage.getItem('user'));
   const [openDailog, setOpenDialog] = React.useState(false);
 
-  const GetUserProfile = (accessToken) => {
-    axios.get(`https://www.googleapis.com/oauth2/v1/userinfo`, {
-      headers: {
-        Authorization: `Bearer ${accessToken?.access_token}`,
-        Accept: 'application/json'
-      }
-    }).then((resp) => {
-      localStorage.setItem('user', JSON.stringify(resp.data));
+  const GetUserProfile = useCallback(async (accessToken) => {
+    try {
+      const response = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo`, {
+        headers: {
+          Authorization: `Bearer ${accessToken?.access_token}`,
+          Accept: 'application/json'
+        }
+      });
+      localStorage.setItem('user', JSON.stringify(response.data));
       setOpenDialog(false);
       window.location.reload();
-    });
-  };
+    } catch (error) {
+      console.error('Error fetching user profile:', error);
+      setOpenDialog(false);
+    }
+  }, []);
 
   const login = useGoogleLogin({
-    onSuccess: (coderesp) => GetUserProfile(coderesp),
-    onError: (error) => console.error("Login Failed:", error),
-    flow: 'implicit',
-    popup: {
-      width: 500,
-      height: 600,
-      left: window.screenX + (window.outerWidth - 500) / 2,
-      top: window.screenY + (window.outerHeight - 600) / 2
+    onSuccess: GetUserProfile,
+    onError: (error) => {
+      console.error("Login Failed:", error);
+      setOpenDialog(false);
+    },
+    flow: 'auth-code',
+    ux_mode: 'redirect',
+    scope: 'email profile',
+    access_type: 'offline',
+    prompt: 'consent',
+    onNonOAuthError: () => {
+      console.error('Non-OAuth error occurred');
+      setOpenDialog(false);
     }
   });
+
+  const handleLogout = useCallback(() => {
+    googleLogout();
+    localStorage.clear();
+    window.location.reload();
+  }, []);
 
   return (
     <div className='fixed w-full p-2 flex justify-between items-center px-6 bg-white/80 backdrop-blur-md z-50 border-b'>
@@ -75,11 +90,7 @@ function Header() {
             </PopoverTrigger>
             <PopoverContent className='w-48 p-2 text-center'>
               <button
-                onClick={() => {
-                  googleLogout();
-                  localStorage.clear();
-                  window.location.reload();
-                }}
+                onClick={handleLogout}
                 className="w-full py-3 text-red-600 hover:bg-red-50 font-semibold rounded-lg transition-colors"
               >
                 Log Out
