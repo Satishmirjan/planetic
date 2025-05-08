@@ -45,7 +45,7 @@ function Header() {
     },
     flow: 'auth-code',
     scope: 'email profile',
-    redirect_uri: "https://planetic-wft3.vercel.app/auth/google/callback",
+    redirect_uri: "https://planetic-wft3.vercel.app",
     ux_mode: 'redirect',
     access_type: 'offline',
     prompt: 'consent'
