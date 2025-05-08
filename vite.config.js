@@ -16,4 +16,14 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      external: ['@google/generative-ai'],
+      output: {
+        globals: {
+          '@google/generative-ai': 'GoogleGenerativeAI'
+        }
+      }
+    }
+  }
 })
