@@ -16,14 +16,12 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  optimizeDeps: {
+    include: ['@google/generative-ai']
+  },
   build: {
-    rollupOptions: {
-      external: ['@google/generative-ai'],
-      output: {
-        globals: {
-          '@google/generative-ai': 'GoogleGenerativeAI'
-        }
-      }
+    commonjsOptions: {
+      include: [/@google\/generative-ai/, /node_modules/]
     }
   }
 })
